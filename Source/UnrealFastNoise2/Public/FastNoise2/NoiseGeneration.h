@@ -11,6 +11,6 @@ class UNREALFASTNOISE2_API UNoiseGeneration : public UObject
 	static int GetRandomSeed();
 	
 public:
-	static void GenPerlin2D(float* Out, int XSize, int YSize, float Frequency);
-	static void GenPerlin2D(float* Out, int XSize, int YSize, float Frequency, int Seed);
+	static void GenPerlin2D(TArray<float>& Out, int XSize, int YSize, float Frequency);
+	static void GenPerlin2D(TArray<float>& Out, int XSize, int YSize, float Frequency, int Seed);
 };
