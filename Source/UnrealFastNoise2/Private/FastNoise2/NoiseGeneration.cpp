@@ -7,12 +7,12 @@ int UNoiseGeneration::GetRandomSeed()
 	return FMath::RandRange(INT_MIN, INT_MAX);
 }
 
-void UNoiseGeneration::GenPerlin2D(TArray<float>& Out, const int XSize, const int YSize, const float Frequency)
+void UNoiseGeneration::GenPerlin2D(TArray<float>& Out, const int XSize, const int YSize, const float Frequency, const float Scale)
 {
-	return GenPerlin2D(Out, XSize, YSize, Frequency, GetRandomSeed());
+	return GenPerlin2D(Out, XSize, YSize, Frequency, Scale, GetRandomSeed());
 }
 
-void UNoiseGeneration::GenPerlin2D(TArray<float>& Out, const int XSize, const int YSize, const float Frequency, const int Seed)
+void UNoiseGeneration::GenPerlin2D(TArray<float>& Out, const int XSize, const int YSize, const float Frequency, const float Scale, const int Seed)
 {
 	const FastNoise::SmartNode<FastNoise::Perlin> Noise = FastNoise::New<FastNoise::Perlin>();
 
@@ -21,5 +21,5 @@ void UNoiseGeneration::GenPerlin2D(TArray<float>& Out, const int XSize, const in
 	Noise->GenTileable2D(Result, XSize, YSize, Frequency, Seed);
 
 	Out.Reserve(ElemCount);
-	for (int i = 0; i < ElemCount; i++) Out.Add(Result[i]);
+	for (int i = 0; i < ElemCount; i++) Out.Add(Result[i] * Scale);
 }
