@@ -4,12 +4,13 @@
 
 int UNoiseGeneration::GetRandomSeed()
 {
-	return FMath::RandRange(INT_MIN, INT_MAX);
+	return FMath::RandRange(-1000000000, 1000000000);
 }
 
 void UNoiseGeneration::GenPerlin2D(TArray<float>& Out, const int XSize, const int YSize, const float Frequency, const float Scale)
 {
-	return GenPerlin2D(Out, XSize, YSize, Frequency, Scale, GetRandomSeed());
+	const int Seed = GetRandomSeed();
+	return GenPerlin2D(Out, XSize, YSize, Frequency, Scale, Seed);
 }
 
 void UNoiseGeneration::GenPerlin2D(TArray<float>& Out, const int XSize, const int YSize, const float Frequency, const float Scale, const int Seed)
